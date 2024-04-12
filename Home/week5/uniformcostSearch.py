@@ -33,7 +33,7 @@ class Graph:
             if current_node not in visited:
                 visited.append(current_node)
                 
-                cur_path.append(current_node)
+                
 
                 if current_node==Goal:
                     return cur_path,current_cost
@@ -41,7 +41,9 @@ class Graph:
 
                 for des, weight in self.adj_list[current_node]:
                     if des not in visited:
-                        prqueue.append([current_cost + weight, des, cur_path.copy()])
+                        new_path=cur_path+[des]
+                        prqueue.append([current_cost + weight, des, new_path])
+                        prqueue.sort(key=lambda x:x[0])
 
 
         return None
